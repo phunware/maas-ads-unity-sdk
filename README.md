@@ -25,16 +25,16 @@ The following libraries can be found under "Phunware/Plugins"
 These dependencies can be found under /Unity/Assets/Plugins/iOS
     
 1. PWCore.framework Version 3.0.2.
-2. PWAdvertising.framework (Ass well as the PWAds.bundle) Version 3.5.0
+2. PWAdvertising.framework (Ass well as the PWAds.bundle) Version 3.5.1
     *Notes: PWAds.bundle contains a javascript file, in order to get this working the file inside unity was renamed to mraid._js. Upon compilation, this file automatically is deployed by the post processing module to .js*
  
 ##### Android:
 
 These dependencies can be found under /Unity/Assets/Plugins/Android
     
-1. MaaSAdvertising.aar Version 2.3.0 -- Android ads SDK
+1. MaaSAdvertising.aar Version 2.3.1 -- Android ads SDK
 2. core-3.0.2.aar   Version 3.0.2 -- Android Phunware Core SDK
-3. pwads-bridge-unity.jar Version 1.0.0 -- Android Unity - SDK bridge
+3. pwads-bridge-unity.jar Version 1.0.1 -- Android Unity - SDK bridge
 
 
 #### PW.iOS.Project.Build
