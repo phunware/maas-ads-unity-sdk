@@ -24,17 +24,17 @@ The following libraries can be found under "Phunware/Plugins"
 
 These dependencies can be found under /Unity/Assets/Plugins/iOS
     
-1. PWCore.framework Version 3.0.2.
-2. PWAdvertising.framework (Ass well as the PWAds.bundle) Version 3.5.1
+1. PWCore.framework Version 3.0.3.
+2. PWAdvertising.framework (Ass well as the PWAds.bundle) Version 3.6.2
     *Notes: PWAds.bundle contains a javascript file, in order to get this working the file inside unity was renamed to mraid._js. Upon compilation, this file automatically is deployed by the post processing module to .js*
  
 ##### Android:
 
 These dependencies can be found under /Unity/Assets/Plugins/Android
     
-1. MaaSAdvertising.aar Version 2.3.1 -- Android ads SDK
-2. core-3.0.2.aar   Version 3.0.2 -- Android Phunware Core SDK
-3. pwads-bridge-unity.jar Version 1.0.1 -- Android Unity - SDK bridge
+1. PWAds-2.4.3.aar Version 2.4.3 -- Android ads SDK
+2. core-3.0.3.aar   Version 3.0.3 -- Android Phunware Core SDK
+3. pwads-bridge-unity.jar Version 1.1.0 -- Android Unity - SDK bridge
 
 
 #### PW.iOS.Project.Build
@@ -51,33 +51,36 @@ To configure the build process, you can edit the following JSon file in /Plugins
 ````
 {
     "group": "PWAds",
-    "libs": [],
-    "frameworks": [ "SystemConfiguration.framework",
-                    "CoreTelephony.framework",
-                    "MessageUI.framework",
-                    "EventKit.framework",
-                    "EventKitUI.framework",
-                    "CoreMedia.framework",
-                    "AVFoundation.framework",
-                    "MediaPlayer.framework",
-                    "AudioToolbox.framework",
-                    "AdSupport.framework",
-                    "StoreKit.framework",
-                    "MobileCoreServices.framework",
-                    "QuartzCore.framework",
-                    "Security.framework",
-                    "CoreLocation.framework",
-                    "UIKit.framework"
-                ],
+    "libs": ["libz.tbd",
+    	"libsqlite3.tbd",
+    	"libiconv.2.tbd"
+    	],
+    "frameworks": ["PWAdvertising.framework",
+    	"PWCore.framework",
+    	"SystemConfiguration.framework",
+		"QuartzCore.framework",
+		"CoreTelephony.framework",
+		"MessageUI.framework",
+		"EventKit.framework",
+		"EventKitUI.framework",
+		"CoreMedia.framework",
+		"AVFoundation.framework",
+		"MediaPlayer.framework",
+		"AudioToolbox.framework",
+		"WebKit.framework",
+		"AdSupport.framework",
+		"StoreKit.framework",
+		"Security.framework",
+		"MobileCoreServices.framework",
+		"UIKit.framework",
+		"CoreLocation.framework"
+    ],
     "headerpaths": ["**"],
-    "files":   ["PWAds.bundle",
-                "PWAdvertising.framework",
-                "PWCore.framework","ad_close.png","ad_close@2x.png"
-                ],
+    "files":   [],
     "rename": ["mraid._js>mraid.js"],
     "folders": [],
     "excludes": ["^.*.meta$", "^.*.mdown$"],
-    "compiler_flags": ["-ObjC"],
+    "compiler_flags": [""],
     "linker_flags": ["-ObjC"]
 }
 ````
@@ -103,6 +106,8 @@ Unity/Assets/Plugins/iOS/PWAdvertising.framework/Resources
 It might even be safest to just search for all symbolic links by the name Resources and delete them: find . -type l -name Resources -exec rm {} \;
 a shell script rmbadlinks has been provided to do just that.  The presence of these bad symbolic links to folders named Resources could be the culprit if you're experiencing application unresponsive crashes upon launching Unity.
 
+Another way to deal with this, which we have done in the included .framework files, is to simply remove everything but the current binary and Headers folder.
+
 ### Client Documentation:
 
 #### Importing the Plugin:
@@ -122,7 +127,7 @@ A Custom Editor script is provided for the PWAdBehaviour component which provide
 ### Banner
 A size must be selected as well as an alignment option.  Additionally, an optional 3D Banner flag can be used with 320x50 banners.
 
-Once the banner ad has been requested, it will remain on screen until dismissal, and a new ad will be insertedinto the banner every 30 seconds.
+Once the banner ad has been requested, it will remain on screen until dismissal, and a new ad will be inserted into the banner every 30 seconds.
 ### Interstitial Image
 Will show a full screen image
 
